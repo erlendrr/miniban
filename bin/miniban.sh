@@ -14,12 +14,12 @@ while true; do
 
         #Hvis antall feilede forsøk har økt vil Ip'en bli lagt til i kickcount listen
         if [[ $COUNT_2 -gt $COUNT_1 ]]; then
-            echo $IP >> $MYDIR/kickcount.db
+            echo $IP >> $MYDIR/.kickcount.db
             echo "IP kastet ut"
         fi
 
         #Hvis antall feilede forsøk i kickcount listen er over 3 for en vilkårlig IP adresse, vil den kjøres i ban-scriptet
-        cat $MYDIR/kickcount.db | sort | uniq -c | while IFS=" " read -r DB_COUNT DB_IP; do
+        cat $MYDIR/.kickcount.db | sort | uniq -c | while IFS=" " read -r DB_COUNT DB_IP; do
                 if [[ $DB_COUNT -gt 2 ]]; then
                     $MYDIR/bin/ban.sh "$DB_IP"
                 fi
