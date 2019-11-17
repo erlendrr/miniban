@@ -5,7 +5,7 @@ IP=$1
 TIMESTAMP=$(date +%s)
 
 banning() {
-        sed -i /$IP/d $MYDIR/.kickcount.db
+        sed -i /$IP/d $MYDIR/kickcount.db
         echo "$IP,$TIMESTAMP" >> $MYDIR/miniban.db
         echo "$IP har blitt blokkert fra SSH"
 }
