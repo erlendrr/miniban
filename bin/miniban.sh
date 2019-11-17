@@ -1,6 +1,7 @@
 #!/bin/bash
 cd "${0%/*}"; cd ..; MYDIR=$(pwd)
 
+
 while true; do
     #henter feilede påloggingsforsøk fra ssh-loggen med X sekunder mellomrom"
     PASSFAILS_1=$(journalctl -u ssh | grep "Failed password" | awk '{print $11}' | uniq -c)
