@@ -1,7 +1,6 @@
 #!/bin/bash
 cd "${0%/*}"; cd ..; MYDIR=$(pwd)
 
-
 unban () {
 if [[ $IP =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
         sudo iptables -D INPUT -p tcp -s $IP --dport 22 -j DROP
@@ -15,7 +14,8 @@ echo "$IP" er litt godtatt på SSH
 }
 
 while true; do
-UNBAN_DATE=$(expr $(date +%s) - 10)
+#velg sekunder
+UNBAN_DATE=$(expr $(date +%s) - 20)
 IFS=$'\n'
 for i in $(cat < $MYDIR/miniban.db); do
         IFS="," read IP TIMESTAMP
