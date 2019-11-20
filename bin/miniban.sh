@@ -3,7 +3,10 @@ cd "${0%/*}"
 cd ..
 MYDIR=$(pwd)
 
+trap "exit" INT TERM ERR
+trap "kill 0" EXIT
 $MYDIR/bin/unban.sh &
+
 
 while true; do
     #henter feilede påloggingsforsøk fra ssh-loggen med X sekunder mellomrom"
@@ -31,3 +34,5 @@ while true; do
         done
     done
 done
+
+wait
