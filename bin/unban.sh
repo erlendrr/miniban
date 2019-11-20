@@ -13,7 +13,7 @@ unban() {
         fi
         sed -i /$IP/d $MYDIR/miniban.db
         echo "$IP" er blitt godtatt på SSH
-}       
+}
 
 while true; do
         #velg sekunder
