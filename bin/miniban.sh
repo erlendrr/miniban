@@ -7,9 +7,9 @@ trap 'kill $(jobs -p)' EXIT TERM
 $MYDIR/bin/unban.sh &
 
 while true; do
-    PASSFAILS_1=$(journalctl -u ssh | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
+    PASSFAILS_1=$(journalctl -u ssh --since "10 minutes ago" | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
     sleep 0.1
-    PASSFAILS_2=$(journalctl -u ssh | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
+    PASSFAILS_2=$(journalctl -u ssh --since "10 minutes ago" | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
 
     echo $PASSFAILS_1 | tr " " "\n" | paste -d ' ' - - | while read COUNT_1 IP; do
         echo $PASSFAILS_2 | tr " " "\n" | paste -d ' ' - - | while read COUNT_2 _IP; do
