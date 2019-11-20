@@ -8,7 +8,7 @@ $MYDIR/bin/unban.sh &
 
 while true; do
     PASSFAILS_1=$(journalctl -u ssh | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
-    sleep 0.2
+    sleep 0.5
     PASSFAILS_2=$(journalctl -u ssh | grep "Failed password" | awk '{print $11}' | sort | uniq -c)
 
     echo $PASSFAILS_1 | tr " " "\n" | paste -d ' ' - - | while read COUNT_1 IP; do
